@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Codificador e decodificador</title>
+  </head>
+  <body>
+    <h1>Codificador e decodificador</h1>
+    <label for="input1">Texto 1 (mais de 4 caracteres):</label>
+    <input type="text" id="input1"><br>
+    <label for="input2">Texto 2 (mais de 4 caracteres):</label>
+    <input type="text" id="input2"><br>
+    <label for="input3">Texto 3:</label>
+    <input type="text" id="input3"><br>
+    <button onclick="codificar()">Codificar</button>
+    <button onclick="decodificar()">Decodificar</button>
+    <p id="resultado"></p>
+    <script>
+      function codificar() {
+        const input1 = document.getElementById("input1").value;
+        const input2 = document.getElementById("input2").value;
+        const input3 = document.getElementById("input3").value;
+        if (input1.length < 5 || input2.length < 5) {
+          alert("Os textos 1 e 2 devem ter pelo menos 5 caracteres");
+          return;
+        }
+        if (new Set(input1).size !== input1.length || new Set(input2).size !== input2.length) {
+          alert("Os textos 1 e 2 devem ter caracteres distintos");
+          return;
+        }
+        let resultado = "";
+        for (let i = 0; i < input3.length; i++) {
+          const indice = input1.indexOf(input3[i]);
+          if (indice !== -1) {
+            resultado += input2[indice];
+          } else {
+            resultado += input3[i];
+          }
+        }
+        document.getElementById("resultado").textContent = resultado;
+      }
+      function decodificar() {
+        const input1 = document.getElementById("input1").value;
+        const input2 = document.getElementById("input2").value;
+        const input3 = document.getElementById("input3").value;
+        if (input1.length < 5 || input2.length < 5) {
+          alert("Os textos 1 e 2 devem ter pelo menos 5 caracteres");
+          return;
+        }
+        if (new Set(input1).size !== input1.length || new Set(input2).size !== input2.length) {
+          alert("Os textos 1 e 2 devem ter caracteres distintos");
+          return;
+        }
+        let resultado = "";
+        for (let i = 0; i < input3.length; i++) {
+          const indice = input2.indexOf(input3[i]);
+          if (indice !== -1) {
+            resultado += input1[indice];
+          } else {
+            resultado += input3[i];
+          }
+        }
+        document.getElementById("resultado").textContent = resultado;
+      }
+    </script>
+  </body>
+</html>
